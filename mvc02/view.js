@@ -12,6 +12,7 @@ var view1 = function(target){
     this.update = function(x_move, y_move){
 	this.transform.x = x_move - this.x;
 	this.transform.y = y_move - this.y;
+	console.log(this.transform.x);
 	this.circle
 	    .attr("transform", "translate(" + [this.transform.x,
 					       this.transform.y] + ")")
