@@ -1,0 +1,18 @@
+var servers = [
+    // {"name":,"imports":[]},
+    {"name":"Entrance"},
+    {"name":"A_AA","imports":["Entrance"]},
+    {"name":"B_BA","imports":["A_AA"]},
+    {"name":"B_BB","imports":["A_AA"]},
+    {"name":"B_BC","imports":["A_AA"]},
+    {"name":"C_CA","imports":["B_BA"]},
+    {"name":"C_CB","imports":["B_BB"]},
+    {"name":"C_CC","imports":["B_BC"]},
+    {"name":"D_DA","imports":["B_BA", "B_BB", "B_BC"]},
+    {"name":"E_EA","imports":["C_CA",
+			      "C_CB",
+			      "C_CC"]},
+    {"name":"E_EB","imports":["C_CA",
+			      "C_CB",
+			      "C_CC"]},
+]

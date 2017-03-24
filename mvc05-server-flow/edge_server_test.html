@@ -51,13 +51,46 @@
 	</style>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<script>
+	 /* var classes = [
+	    {"name":"server_server1","size":3938,"imports":["user"]},
+	    {"name":"server_server2","size":1000,"imports":["user"]},
+	    {"name":"term_term1","size":40,"imports":["server_server1", "server_server2"]},
+	    {"name":"term_term2","size":40,"imports":["server_server1", "server_server2"]},
+	    {"name":"term_term3","size":40,"imports":["server_server1", "server_server2"]},
+	    {"name":"user","size":30},
+	    ]*/
+	 /* var classes = [
+	    {"name":"server_server1","imports":["user"]},
+	    {"name":"server_server2","imports":["user"]},
+	    {"name":"term_term1","imports":["server_server1", "server_server2"]},
+	    {"name":"term_term2","imports":["server_server1", "server_server2"]},
+	    {"name":"term_term3","imports":["server_server1", "server_server2"]},
+	    {"name":"user"}
+	    ]*/
 	 var classes = [
-	     {"name":"server_server1","size":3938,"imports":["user"]},
-	     {"name":"server_server2","size":1000,"imports":["user"]},
-	     {"name":"term_term1","size":40,"imports":["server_server1", "server_server2"]},
-	     {"name":"term_term2","size":40,"imports":["server_server1", "server_server2"]},
-	     {"name":"term_term3","size":40,"imports":["server_server1", "server_server2"]},
-	     {"name":"user","size":30},
+	     {"name":"Users"},
+	     {"name":"kakaku.com","imports":["Users"]},
+	     {"name":"KPriceDBCL101.kakaku.local","imports":["kakaku.com"]},
+	     {"name":"ts-fp_ts-fp05.kakaku.local","imports":["kakaku.com"]},
+	     {"name":"ts-fp_ts-fp06.kakaku.local","imports":["kakaku.com"]},
+	     {"name":"ts-fp_ts-fp07.kakaku.local","imports":["kakaku.com"]},
+	     {"name":"sa-recom_sa-recom01.kakaku.local","imports":["kakaku.com"]},
+	     {"name":"sa-recom_sa-recom02.kakaku.local","imports":["kakaku.com"]},
+	     {"name":"sa-recom_sa-recom03.kakaku.local","imports":["kakaku.com"]},
+	     {"name":"hd-at11-job_hd-at11-job001.kakaku.local","imports":["ts-fp_ts-fp05.kakaku.local",
+									  "ts-fp_ts-fp06.kakaku.local",
+									  "ts-fp_ts-fp07.kakaku.local",
+									  "sa-recom_sa-recom01.kakaku.local",
+									  "sa-recom_sa-recom02.kakaku.local",
+									  "sa-recom_sa-recom03.kakaku.local",
+									  "KPriceDBCL101.kakaku.local"]},
+	     {"name":"hd-at11-job_hd-at11-job002.kakaku.local","imports":["ts-fp_ts-fp05.kakaku.local",
+									  "ts-fp_ts-fp06.kakaku.local",
+									  "ts-fp_ts-fp07.kakaku.local",
+									  "sa-recom_sa-recom01.kakaku.local",
+									  "sa-recom_sa-recom02.kakaku.local",
+									  "sa-recom_sa-recom03.kakaku.local",
+									  "KPriceDBCL101.kakaku.local"]},
 	 ]
 	</script>
     </head>
@@ -76,13 +109,14 @@
 			.curve(d3.curveBundle.beta(1));
 
 	 var svg = d3.select("body").append("svg")
-		     .attr("width", diameter)
-		     .attr("height", diameter)
+		     .attr("width", diameter * 1.5)
+		     .attr("height", diameter * 1.5)
 		     .append("g")
 		     .attr("transform", "translate(" + radius + "," + radius + ")");
 
 	 var link = svg.append("g").selectAll(".link"),
              node = svg.append("g").selectAll(".node");
+;
 
          var root = d3.hierarchy(packageHierarchy(classes), (d) => d.children);
 
@@ -98,7 +132,8 @@
 	     .data(links)
 	     .enter().append('path')
 	     .attr('class', 'link')
-	     .attr('d', d => line(d.source.path(d.target)));
+	     .attr('d', d => line(d.source.path(d.target)))
+	     .attr("transform", "translate(150,0)");
 
          node = node
 	     .data(nodes.filter(function(n) { return !n.children; }))
@@ -106,7 +141,8 @@
 	     .style("font-size", 20)
 	     .attr("class", "node")
 	     .attr("dy", ".31em")
-	     .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+	 /* .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })*/
+	     .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "rotate(" + (90 - d.x) + ")translate(150,0)" : "rotate(" + (90 - d.x)  + ")translate(150,0)"); })
 	     .style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
 	     .text(function(d) { return d.data.key; })
 	     .on("mouseover", mouseovered)
@@ -128,7 +164,7 @@
 	 }
 
 	 function mouseouted(d) {
-             console.log("moouseout");
+             /* console.log("moouseout");*/
              link
 		 .classed("link--target", false)
 		 .classed("link--source", false);
