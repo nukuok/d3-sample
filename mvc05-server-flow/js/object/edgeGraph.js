@@ -58,22 +58,20 @@ function genLinksDict(links){
 }
 
 // https://bl.ocks.org/mbostock/1705868
-function transition() {
-    circle.transition()
-	.duration(2000)
-	.attrTween("transform", translateAlong(eg1.linksDict.AA.BA))
-}
-
-// https://bl.ocks.org/mbostock/1705868
-function translateAlong(path) {
-  var l = path.getTotalLength();
-  return function(d, i, a) {
-    return function(t) {
-      var p = path.getPointAtLength(t * l);
-      return "translate(" + p.x + "," + p.y + ")";
-    };
-  };
-}
+// function transition() {
+//     circle.transition()
+// 	.duration(2000)
+// 	.attrTween("transform", translateAlong(eg1.linksDict.AA.BA))
+// }
+// function translateAlong(path) {
+//   var l = path.getTotalLength();
+//   return function(d, i, a) {
+//     return function(t) {
+//       var p = path.getPointAtLength(t * l);
+//       return "translate(" + p.x + "," + p.y + ")";
+//     };
+//   };
+// }
 
 function edgeGraphModel(){
     this.model = {};
