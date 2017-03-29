@@ -24,7 +24,7 @@ get_by_offset_template = ("curl -s \"http://%(ip)s:8082/topics/%(topic)s/partiti
 
 class KafkaRestAPIWrapper(object):
     def __init__(self):
-        self.env_dict = {"ip": "192.168.20.183"}
+        self.env_dict = {"ip": "localhost"}
         pass
 
     def id_uri_from_json(self, json_dict):
@@ -56,7 +56,7 @@ class KafkaRestAPIWrapper(object):
         mame["topic"] = topic
         mame["key"] = base64.b64encode(key)
         mame["data"] = base64.b64encode(data)
-        print(produce_template % mame)
+        # print(produce_template % mame)
         run_result = getstatusoutput(produce_template % mame)
         return run_result[1]
 
