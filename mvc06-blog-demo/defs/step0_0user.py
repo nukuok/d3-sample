@@ -4,7 +4,7 @@ import numpy as np
 class Users(object):
     def __init__(self):
         self.user_num = 20
-        self.state_num = 100
+        self.state_num = 10
 
     def normalize_matrix(self, matrix):
         matrix *= self.mask
@@ -31,13 +31,13 @@ class RecordGenerator(Users):
         self.set_users_matrix()
         self.page_num = 2
         self.page_state_num = self.state_num
-        self.page_transfer_num = 20
+        self.page_transfer_num = int(self.page_state_num * 0.4)
         self.max_step = 40
 
     def set_users_current_state(self):
         self.current_state = np.zeros(self.user_num)
         self.current_step = np.zeros(self.user_num)
-        self.current_page = np.random.permutation(self.page_state_num) % self.page_num
+        self.current_page = np.random.permutation(self.user_num) % self.page_num
 
     def user_exit_prob(self, current_step, max_step):
         return float(current_step) / max_step
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     rg = RecordGenerator()
     rg.set_pages_matrix()
     rg.set_users_current_state()
-    for ii in range(20):
+    for ii in range(30):
         records = rg.gen_record_and_update()
         rg.check_exited_user_and_update()
         print(rg.format_record(records)[0])

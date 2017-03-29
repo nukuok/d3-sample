@@ -1,0 +1,13 @@
+javac -cp '/home/ko_yoyo/blog_demo_20170329/jar/*' WordCountLambdaExample.java
+cp WordCountLambdaExample.class io/confluent/examples/streams/
+java -cp '/home/ko_yoyo/blog_demo_20170329/jar/*:./' io.confluent.examples.streams.WordCountLambdaExample
+
+
+/bin/kafka-console-consumer --topic WordsWithCountsTopic --from-beginning \
+                              --zookeeper localhost:2181 \
+                              --property print.key=true \
+--property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+
+
+/bin/kafka-topics --zookeeper localhost:2181 --delete --topic WordsWithCountsTopic
+/bin/kafka-topics --zookeeper localhost:2181 --delete --topic TextLinesTopic

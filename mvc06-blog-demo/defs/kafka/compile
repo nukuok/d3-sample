@@ -1,0 +1,3 @@
+javac -cp '/home/ko_yoyo/blog_demo_20170329/jar/*' BlogDemo.java &&
+cp BlogDemo.class demo/ &&
+java -cp '/home/ko_yoyo/blog_demo_20170329/jar/*:./' demo.BlogDemo
