@@ -13,7 +13,7 @@ class BlogDemoBackend(object):
         self.rg.set_pages_matrix()
         self.rg.set_users_current_state()
 
-        self.kafka_client = KafkaRestAPIWrapper("192.168.20.183")
+        self.kafka_client = KafkaRestAPIWrapper("localhost")
 
         self.records = []
         self.track_records = []

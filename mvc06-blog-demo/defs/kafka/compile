@@ -1,3 +1,3 @@
-javac -cp '/home/nukuok/Git/d3-sample/mvc06-blog-demo/defs/kafka/jar/*' BlogDemo.java &&
-cp BlogDemo.class demo/ &&
-java -cp '/home/nukuok/Git/d3-sample/mvc06-blog-demo/defs/kafka/jar/*:./' demo.BlogDemo
+javac -cp '/home/nukuok/Git/d3-sample/mvc06-blog-demo/defs/kafka/jar/*' BlogDemoStep4.java &&
+cp BlogDemoStep4.class demo/streams &&
+java -cp '/home/nukuok/Git/d3-sample/mvc06-blog-demo/defs/kafka/jar/*:./' demo.streams.BlogDemoStep4

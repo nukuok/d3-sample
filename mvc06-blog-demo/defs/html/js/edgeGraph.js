@@ -113,7 +113,7 @@ function edgeGraphView(){
 	    .attr("cy", 0)
 	    .attr("r", innerRadius)
 	    .style("fill", "none")
-	    .style("stroke", "blue")
+	    .style("stroke", "grey")
 	    .style("stroke-width", "2px")
 	    .style("stroke-opacity", 0.2)
 
@@ -138,7 +138,7 @@ function edgeGraphView(){
 		.style("font-size", 20)
 		.attr("class", "node")
 		.attr("dy", ".31em")
-		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "rotate(" + (90 - d.x) + ")" : "rotate(" + (90 - d.x)  + ")"); })
+		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 14) + ",0)" + (d.x < 180 ? "rotate(" + (90 - d.x) + ")" : "rotate(" + (90 - d.x)  + ")"); })
 		.style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
 		.text(function(d) { return d.data.key; })
 		// .on("mouseover", this.mouseovered)
