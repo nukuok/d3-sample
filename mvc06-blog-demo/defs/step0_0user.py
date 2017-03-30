@@ -4,7 +4,7 @@ import numpy as np
 class Users(object):
     def __init__(self):
         self.user_num = 20
-        self.state_num = 10
+        self.state_num = 6
 
     def normalize_matrix(self, matrix):
         matrix *= self.mask
@@ -73,7 +73,7 @@ class RecordGenerator(Users):
                 self.reset_ith_state_and_step(ii)
 
     def format_record(self, records):
-        return ["u%03d\tp%02d\ts%04d" % (ii, self.current_page[ii], records[ii]) for ii in range(len(records))]
+        return ["u%03d\tp%02d\ts%03d" % (ii, self.current_page[ii], records[ii]) for ii in range(len(records))]
 
 if __name__ == '__main__':
     # users_data = Users()
